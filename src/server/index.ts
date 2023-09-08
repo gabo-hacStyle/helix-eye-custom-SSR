@@ -1,11 +1,12 @@
 import express, {Express, Request, Response} from 'express'
 import { config } from './config'
+import { render } from './render/index'
+
+
 const app: Express =  express()
 
 app.get('*', (req: Request, res: Response) => {
-    res.send(`
-        <h1>Hola, ruta ${req.url} </h1>
-    `)
+    res.send(render(req.url))
 })
 
 
