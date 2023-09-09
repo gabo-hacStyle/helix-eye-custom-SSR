@@ -1,4 +1,4 @@
-export const template = (html: string): string => {
+export const template = (html: string, initialProps={}, styles=''): string => {
     return (
         `<!DOCTYPE html>
         <html lang="es">
@@ -12,11 +12,18 @@ export const template = (html: string): string => {
           <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
           <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
           <title>Helix App</title>
+          ${styles}
         </head>
         
         <body>
+            
+          <div id="app">
             ${html}
-          <div id="app"></div>
+          </div>
+
+          <script>window.__INITIAL_PROPS__=${JSON.stringify(initialProps)}</script>
+  
+          <script src="app.js" type="text/javascript"></script>
         </body>
         
         </html>`
