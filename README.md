@@ -1,68 +1,61 @@
 # Helix Eye
 
-In this project you can see a buch number of galaxies brought from the NASA api itself!!!
+Helix Eye is a server-side rendering (SSR) engine designed to facilitate the development of SSR apps. As an example, this project utilizes an existing repository from Platzi, named [Helix Eye](https://github.com/platzi/helix-eye-custom-SSR), showcasing a collection of galaxies sourced directly from the NASA API.
 
-##Dependencies
+## Copyright
 
-Though this project is a server side render app with TypeScript, Im not installing nextJs because this is mainly for learning purposes. Learning how a SSR works behind the scenes.
-Using: 
+This project is a fork of [Platzi's Helix Eye Custom SSR](https://github.com/platzi/helix-eye-custom-SSR), wherein the application that originally ran on the client is now adapted to run on the server.
+
+## Dependencies
+
+Although this project is a TypeScript-based server-side rendered application, Next.js is intentionally omitted to serve primarily as a learning resource for understanding SSR fundamentals. The project utilizes:
+
 - Express (server)
 - TypeScript
-- StyledComponents (Styles)
+- Styled Components (Styles)
 
 You can install all dependencies for this project using npm or yarn.
 
-
-## Copyright
-This is a project forked from https://github.com/platzi/helix-eye-custom-SSR. 
-In this forked reppo I recreated the app that was running in the client, but running in the server instead
-
 ## Why SSR?
 
-Well, the server side renderization is another option to the client-side-render, and this pattern is being used in most of the frontend environment currently. 
-SSR means that our app would be first rendered in the server, and then given to the client.
+Server-side rendering offers an alternative to client-side rendering and is widely adopted in contemporary frontend development. SSR involves rendering the app on the server first, providing a faster initial response. Files are subsequently executed as CSS or JS on the client side.
 
-Falta acaaaa...a.a.a.a
+### When to use SSR?
 
-## Main changes
-There´s a new folder called server/ inside the src/ folder. In this app we are creating a configuration for the server, and creating a renderization process. Also, besides the normal webpack config file or the client, I added a new file for the webpack config for the server itself. 
-We are using Express as a server.
-In here we are doing the routing system with StaticRouter instead of react-router-dom. 
-Also the app in the server does a pre-fetching and injects all the data brought from the api, so that the client wont use data to fetch. 
+Consider SSR for:
 
-The styles were configured to work within a SSR app, and you can see that on the StyledComponents documentation about SSR. But basically it creates a new Instance if styles, and  then wraps the whole app in that instance, collect the styles and gets the tags. 
+- Applications with complex routing
+- High-performance requirements
+- Pages prioritizing SEO
+- Enhanced client-side security
 
-## How it works
+## Main Changes
 
-this whole thing works with an hydratazion process, which means that react instead of creating root (createRoot), it will hydrate the components previously rendered with new information, new interaction, etc. 
-The server will first render a mockup, which you can find in src/server/render/template.tsx. 
-Also, a stream has to be created. the stream will be the collection of the styes, the router of the server and the app with all the JS, this stream is in the src/server/index.tsx file, and this alongside othe initial props (can be the data brought from pre-fetching) and the style Tags are being passed and injected in the template.tsx file.
+A new folder named `server/` resides within the `src/` directory. It encompasses server configuration and rendering processes. In addition to the standard webpack configuration for the client, a dedicated configuration file for the server is introduced.
 
-fallta acac. .. . 
+The routing system employs StaticRouter instead of react-router-dom. The server-side app performs pre-fetching and injects data obtained from the API to minimize client-side data fetching.
 
+Styles are configured to function within an SSR app, as detailed in the Styled Components documentation. Essentially, a new style instance is created, wrapping the entire app, collecting styles, and generating tags.
 
+## How It Works
 
+The system operates through a hydration process. React, instead of creating a root (createRoot), hydrates previously rendered components with updated information and interactions.
 
+The server initially renders a mockup, found in `src/server/render/template.tsx`, providing the first HTML ready for client consumption. Once JavaScript is loaded, hydration takes place.
 
+A stream must be created, encompassing styles, the server router, and the app with all its JavaScript. This stream, detailed in `src/server/index.tsx`, along with initial props (such as pre-fetched data) and style tags, is passed and injected into `template.tsx`.
 
+This encapsulates the core logic of a server-side rendered app, with some concepts omitted for brevity, especially those pertaining to more extensive projects such as security measures.
 
+## Commands
 
+The scripts play a crucial role in the engine's operation. They automate the creation of the `dist/` folder with the necessary files and configure webpack accordingly. In the `package.json`, you'll find the following scripts:
 
+- `npm run build-client`
+- `npm run build-server`
+- `npm run build` (executes the previous two)
+- `npm run build-dev`
+- `npm run dev`
+- `npm start`
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**Note:** Ensure that you specify the working environment (development or production) in the `.env` file.
